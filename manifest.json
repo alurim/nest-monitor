@@ -1,0 +1,34 @@
+{
+  "name": "Nest Monitor",
+  "description": "Loads all camera feeds in one page",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": ["https://home.nest.com/*"],
+      "css": ["styles.css"],
+      "run_at": "document_end",
+      "js": ["home-content-script.js"]
+    },
+    {
+      "matches": ["https://home.nest.com/camera/*"],
+      "run_at": "document_end",
+      "css": ["camera-styles.css"],
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "https://home.nest.com/*",
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "browser_action": {
+    "default_title": "Enable Nest Monitor",
+    "default_icon": "wall-mount-camera.png"
+  },
+  "manifest_version": 2
+}
